@@ -1,0 +1,7 @@
+#Git ignore files
+*.swp
+*.pyc
+*.obj
+*.db
+.svn
+.git
