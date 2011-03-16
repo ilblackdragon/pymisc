@@ -1,6 +1,7 @@
 """
 Module contains different decorator for different purpose
 """
+import sys
 import logging
 
 class LogPrinter(object):
@@ -18,7 +19,8 @@ class LogPrinter(object):
 
     def write(self, text):
         """Logs written output to a specific logger"""
-        self.ilogger.info(text)
+        if text.strip() != '':
+            self.ilogger.info(text)
 
 def logprint(func):
     """Wraps a method so that any calls made to print get logger instead"""
@@ -26,10 +28,17 @@ def logprint(func):
         stdobak = sys.stdout
         lpinstance = LogPrinter()
         sys.stdout = lpinstance
+        lpinstance.write('Call `%s.%s` with args: `%s`' % (func.__module__, func.__name__, str(arg)))
         try:
-            return func(*arg)
+            res = func(*arg)
+        except Exception as e:
+            lpinstance.write('Function `%s.%s` finished with exception `%s`.\n%s' % (func.__module__, func.__name__, str(type(e)), e.message))
+            res = None
+        else:
+            lpinstance.write('Function `%s.%s` finished with result `%s`.' % (func.__module__, func.__name__, str(res)))
         finally:
             sys.stdout = stdobak
+        return res
     return pwrapper
 
 class memoized(object):
@@ -62,3 +71,18 @@ class memoized(object):
       """Support instance methods."""
       return functools.partial(self.__call__, obj)
 
+if __name__ == "__main__":
+    @logprint
+    def main():
+
+        @logprint
+        def test(q):
+            x = [a + 10 for a in q]
+            print('123')
+            print('321')
+            return x
+
+        r = test([1,23])
+        print(r)
+
+    main()
