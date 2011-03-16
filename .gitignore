@@ -6,3 +6,6 @@
 .svn
 .git
 env/
+build/
+dist/
+pymisc.egg-info/

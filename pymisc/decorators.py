@@ -70,19 +70,4 @@ class memoized(object):
    def __get__(self, obj, objtype):
       """Support instance methods."""
       return functools.partial(self.__call__, obj)
-
-if __name__ == "__main__":
-    @logprint
-    def main():
-
-        @logprint
-        def test(q):
-            x = [a + 10 for a in q]
-            print('123')
-            print('321')
-            return x
-
-        r = test([1,23])
-        print(r)
-
-    main()
+ 

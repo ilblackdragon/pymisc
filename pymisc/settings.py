@@ -1,5 +1,5 @@
 """
-Config class
+Settings class
 Yours settings.py:
 >>> from pymisc.settings import Settings
 >>> settings = Settings('your.cfg')
@@ -45,9 +45,4 @@ class Settings(Config):
         except AttributeError:
             self.__setattr__(key, value)
 
-if __name__ == "__main__":
-    settings = Settings('pymisc.cfg')
-    settings.wow = 'coot'
-    settings.default('qwe', 'qq')
-    print(settings.qwe)
 
