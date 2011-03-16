@@ -1,6 +1,8 @@
 import subprocess
 from utils import RecursiveDict
 
+from abstract import IBase
+
 class Version(object):
     
     def __init__(self, major, minor, build):
