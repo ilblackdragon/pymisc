@@ -15,4 +15,3 @@ def test_logprint():
 
 if __name__ == "__main__":
     test_logprint()
-v   
