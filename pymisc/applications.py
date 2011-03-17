@@ -1,6 +1,6 @@
 import subprocess
-from utils import RecursiveDict
 
+from utils import RecursiveDict
 from abstract import IBase
 
 class Version(object):
