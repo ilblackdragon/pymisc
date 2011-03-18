@@ -1,11 +1,14 @@
 __author__ = 'ilblackdragon@gmail.com'
 
+from pymisc import decorators
+
 class RegisterSystem(object):
 
     interfaces = []
     classes = []
 
     @classmethod
+    @decorators.logprint
     def register(self, cls):
         if cls.__name__[0] == 'I':
             print("Regirstring interface `%s`" % cls.__name__)

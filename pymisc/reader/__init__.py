@@ -1,4 +1,4 @@
-import abstract
+from pymisc import abstract
 
 import csvutils
 
@@ -92,7 +92,7 @@ class NewFieldFilter(IDataFilter):
     def set_header(self, header):
         self.base.set_header(header)
 
-class IDataManager(IStandard):
+class IDataManager(abstract.IBase):
 
     @classmethod
     def connect(cls, connection_dict):
