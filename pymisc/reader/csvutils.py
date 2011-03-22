@@ -38,13 +38,20 @@ class CSVFile(object):
     def get_line(self, line_number):
         return [self.data[name][line_number] for name in self.header]
 
+    def get_line_by_id(self, id_column, value):
+        try:
+            idx = self.data[id_column].index(value)
+            return self.get_line(idx)
+        except ValueError:
+            print("Index %s not found" % value)
+            return []
+        
     def get_dict_line(self, line_number):
         return dict([(name, self.data[name][line_number]) for name in self.header])
         
     def save(self, filename):
         f = open(filename, 'wb')
         writer = csv.writer(f)
-        self.header = sorted(self.header)
         if self.header:
             writer.writerow(self.header)
             for i in range(self.length):
@@ -54,7 +61,7 @@ class CSVFile(object):
     def add_column(self, column, val=None):
         column = column.upper()
         self.data[column] = []
-        self.header = self.data.keys()
+        self.header.append(column)
         for i in range(self.length):
             if callable(val):
                 self.data[column].append('')

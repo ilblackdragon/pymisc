@@ -1,9 +1,15 @@
-"""Provide some widely useful utilities. Safe for "from utils import *".
-
+"""Provide some widely useful utilities. Safe for "from pymisc.utils import *".
 """
 
 from __future__ import generators
 import operator, math, random, copy, sys, os.path, bisect, re
+
+# Structures
+from pymisc.structs import *
+# Math functions and constants
+from pymisc.math import *
+# Functional style functions
+from pymisc.func import *
                 
 #______________________________________________________________________________
 # Functions on sequences of numbers
