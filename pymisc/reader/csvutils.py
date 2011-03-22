@@ -60,8 +60,10 @@ class CSVFile(object):
     
     def add_column(self, column, val=None):
         column = column.upper()
-        self.data[column] = []
+        if column in self.header:
+            return
         self.header.append(column)
+        self.data[column] = []
         for i in range(self.length):
             if callable(val):
                 self.data[column].append('')
