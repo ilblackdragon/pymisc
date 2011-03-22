@@ -10,37 +10,45 @@ class LogPrinter(object):
     whatever it gets sent to a Logger object at the INFO level
     """
     
-    def __init__(self):
+    def __init__(self, logger=None):
         """Grabs the specfic logger to use for logprinting."""
-        self.ilogger = logging.getLogger('logprinter')
-        il = self.ilogger
-        logging.basicConfig()
-        il.setLevel(logging.INFO)
+        if not logger:
+            self.ilogger = logging.getLogger('logprinter')
+            il = self.ilogger
+            logging.basicConfig()
+            il.setLevel(logging.INFO)
+        else:
+            self.ilogger = logger
 
     def write(self, text):
         """Logs written output to a specific logger"""
         if text.strip() != '':
             self.ilogger.info(text)
 
-def logprint(func):
+class logprint(object):
     """Wraps a method so that any calls made to print get logger instead"""
-    def pwrapper(*arg):
-        stdobak = sys.stdout
-        lpinstance = LogPrinter()
-        sys.stdout = lpinstance
-        lpinstance.write('Call `%s.%s` with args: `%s`' % (func.__module__, func.__name__, str(arg)))
-        try:
-            res = func(*arg)
-        except Exception as e:
-            lpinstance.write('Function `%s.%s` finished with exception `%s`.\n%s' % (func.__module__, func.__name__, str(type(e)), e.message))
-            res = None
-        else:
-            lpinstance.write('Function `%s.%s` finished with result `%s`.' % (func.__module__, func.__name__, str(res)))
-        finally:
-            sys.stdout = stdobak
-        return res
-    return pwrapper
-
+    
+    def __init__(self, logger=None):
+        self.logger = logger
+        
+    def __call__(self, func):
+        def pwrapper(*arg):
+            stdobak = sys.stdout
+            lpinstance = LogPrinter(self.logger)
+            sys.stdout = lpinstance
+            lpinstance.write('Call `%s.%s` with args: `%s`' % (func.__module__, func.__name__, str(arg)))
+            try:
+                res = func(*arg)
+            except Exception as e:
+                lpinstance.write('Function `%s.%s` finished with exception `%s`.\n%s' % (func.__module__, func.__name__, str(type(e)), e.message))
+                res = None
+            else:
+                lpinstance.write('Function `%s.%s` finished with result `%s`.' % (func.__module__, func.__name__, str(res)))
+            finally:
+                sys.stdout = stdobak
+            return res
+        return pwrapper
+    
 class memoized(object):
    """Decorator that caches a function's return value each time it is called.
    If called later with the same arguments, the cached value is returned, and

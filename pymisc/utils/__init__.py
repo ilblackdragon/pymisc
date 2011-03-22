@@ -3,6 +3,7 @@
 
 from __future__ import generators
 import operator, math, random, copy, sys, os.path, bisect, re
+import time
 
 # Structures
 from pymisc.structs import *
@@ -110,6 +111,11 @@ def clip(vector, lowest, highest):
 #______________________________________________________________________________
 # Misc Functions
 
+def timer(fn, *args):
+    "Time the application of fn to args. Return (result, seconds)."
+    start = time.clock()
+    return fn(*args), time.clock() - start
+    
 def printf(format, *args): 
     """Format args with the first argument as format string, and write.
     Return the last arg, or format itself if there are no args."""
