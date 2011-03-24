@@ -4,7 +4,7 @@ import csvutils
 import interfaces
 import csv
 
-class XLSReader(intefaces.IReader):
+class XLSReader(interfaces.IReader):
 
     @classmethod
     def support_formats(cls):
