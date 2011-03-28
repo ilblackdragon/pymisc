@@ -3,7 +3,7 @@ Simple Data Structures:
 Dict, DefaultDict, RecursiveDict, Struct
 """
 
-import copy as cccopy
+import copy
 
 def Dict(**entries):  
     """Create a dict out of the argument=value arguments. 
@@ -20,7 +20,7 @@ class DefaultDict(dict):
 
     def __getitem__(self, key):
         if key in self: return self.get(key)
-        return self.setdefault(key, cccopy.deepcopy(self.default))
+        return self.setdefault(key, copy.deepcopy(self.default))
     
     def __copy__(self):
         copy = DefaultDict(self.default)
