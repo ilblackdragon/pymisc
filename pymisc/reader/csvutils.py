@@ -75,7 +75,7 @@ class CSVFile(object):
         column= column.upper()
         if column in self.header:
             self.header.remove(column)
-            self.data.remove(column)
+            self.data.pop(column)
                 
     def add_row(self, row, default=None):
         if isinstance(row, dict):
