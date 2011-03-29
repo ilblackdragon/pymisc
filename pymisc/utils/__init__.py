@@ -6,11 +6,11 @@ import operator, math, random, copy, sys, os.path, bisect, re
 import time
 
 # Structures
-from pymisc.structs import *
+from pymisc.utils.structs import *
 # Math functions and constants
-from pymisc.math import *
+from pymisc.utils.math import *
 # Functional style functions
-from pymisc.func import *
+from pymisc.utils.func import *
                 
 #______________________________________________________________________________
 # Functions on sequences of numbers

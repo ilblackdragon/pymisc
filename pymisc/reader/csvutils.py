@@ -70,7 +70,13 @@ class CSVFile(object):
                 self.data[column][-1] = val(self.get_dict_line(i))
             else:
                 self.data[column].append(val or '')
-            
+
+    def remove_column(self, column):
+        column= column.upper()
+        if column in self.header:
+            self.header.remove(column)
+            self.data.pop(column)
+                
     def add_row(self, row, default=None):
         if isinstance(row, dict):
             for key in self.header:
