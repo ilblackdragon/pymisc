@@ -1,4 +1,7 @@
+# -*- coding: utf-8 -*-
+
 import re
+import string
 
 from django.shortcuts import _get_queryset
 from django.conf import settings
@@ -57,3 +60,15 @@ def get_config(key, default):
     ADMIN_EMAIL = get_config('ADMIN_EMAIL', 'default@email.com')
     """
     return getattr(settings, key, default)
+
+def get_alphabets():
+    alphabet_en = unicode(string.ascii_uppercase)
+    alphabet_ru = []
+    first = ord(u'а')
+    last = ord(u'я')+1
+    for ch in range(first, last):
+        alphabet_ru.append(unichr(ch).upper()) 
+    return (alphabet_en, alphabet_ru)
+    
+alphabet_en, alphabet_ru = get_alphabets()
+
