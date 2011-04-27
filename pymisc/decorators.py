@@ -41,7 +41,7 @@ class logprint(object):
                 res = func(*arg)
             except Exception as e:
                 lpinstance.write('Function `%s.%s` finished with exception `%s`.\n%s' % (func.__module__, func.__name__, str(type(e)), e.message))
-                res = None
+                raise e, None, sys.exc_info()
             else:
                 lpinstance.write('Function `%s.%s` finished with result `%s`.' % (func.__module__, func.__name__, str(res)))
             finally:
