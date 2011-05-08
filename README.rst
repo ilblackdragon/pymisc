@@ -31,3 +31,9 @@ Use pymisc
 
 More detailed information will be posted later
 
+License
+-------
+
+Copyright (C) 2011 Ilya Polosukhin
+This program is licensed under the MIT License (see LICENSE)
+ 

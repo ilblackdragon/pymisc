@@ -7,7 +7,7 @@ Yours settings.py:
 Your code file:
 >>> from settings import settings
 ...
->>> if setttings.MYVAR > 10:
+>>> if settings.MYVAR > 10:
 >>>    pass
 ...
 """
