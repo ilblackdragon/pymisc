@@ -72,7 +72,7 @@ class CSVFile(object):
                 self.data[column].append(val or '')
 
     def remove_column(self, column):
-        column= column.upper()
+        column = column.upper()
         if column in self.header:
             self.header.remove(column)
             self.data.pop(column)
@@ -110,4 +110,5 @@ if __name__ == "__main__":
     f.save('test.csv')
     f2 = CSVFile('test.csv')
     f2.add_row(['1', '2', '3'])
+    f2.remove_column('test0')
     f2.save('test.csv')

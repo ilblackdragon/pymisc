@@ -27,7 +27,7 @@ class Settings(Config):
                 super(Settings, self).__init__(f)
                 loaded = True
             except Exception as e:
-                print("Loading configuration file failed with:\n`%s`" % e.message)
+                print("Loading configuration file failed with error:\n`%s`" % e)
         if not loaded:
             super(Settings, self).__init__()
         if autosave:
@@ -37,7 +37,7 @@ class Settings(Config):
         fname = filename or object.__getattribute__(self, 'filename')
         if not fname:
             return
-        Config.save(self, open(fname, 'w'))
+        Config.save(self, open(fname, 'wb'))
 
     def default(self, key, value):
         try:
