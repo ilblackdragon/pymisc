@@ -34,16 +34,21 @@ def levenshtein_distance(seq1, seq2):
     >>> levenshtein_distance('AATZZZ', 'AAAZ')
     3
     """
-    oneago = None
-    thisrow = range(1, len(seq2) + 1) + [0]
-    for x in xrange(len(seq1)):
-        oneago, thisrow = thisrow, [0] * len(seq2) + [x + 1]
-        for y in xrange(len(seq2)):
-            delcost = oneago[y] + 1
-            addcost = thisrow[y - 1] + 1
-            subcost = oneago[y - 1] + (seq1[x] != seq2[y])
-            thisrow[y] = min(delcost, addcost, subcost)
-    return thisrow[len(seq2) - 1]
+    len_seq1 = len(seq1) + 1
+    prev_row = range(len_seq1)
+    j = 1
+    for c1 in seq2:
+        this_row = [j] * len_seq1
+        i = 1
+        for c2 in seq1:
+            if c1 == c2:
+                this_row[i] = prev_row[i]
+            else:
+                this_row[i] = min(this_row[i-1], prev_row[i], prev_row[i-1]) + 1
+            i += 1
+        prev_row = this_row
+        j += 1
+    return this_row[-1]
     
 def damerau_levenshtein_distance(seq1, seq2):
     """
