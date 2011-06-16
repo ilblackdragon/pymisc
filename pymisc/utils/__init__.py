@@ -11,7 +11,17 @@ from pymisc.utils.structs import *
 from pymisc.utils.math import *
 # Functional style functions
 from pymisc.utils.func import *
-                
+
+def spaceless(string):
+    """
+    Delete all doubling, tripling and so on spaces in string
+    """
+    pre_len = 0
+    while len(string) != pre_len:
+        pre_len = len(string)
+        string = string.replace('  ', ' ')
+    return string
+
 #______________________________________________________________________________
 # Functions on sequences of numbers
 # NOTE: these take the sequence argument first, like min and max,
