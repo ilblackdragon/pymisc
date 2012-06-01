@@ -2,3 +2,7 @@
 
 * Set public repository
 
+## 2012-05-31 0.0.2
+
+* Many new utility modules added
+* Python 3.x support added

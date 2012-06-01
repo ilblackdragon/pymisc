@@ -10,7 +10,7 @@ pymisc
 Requirements
 -------------
 
-- python >= 2.5
+- python >= 2.5 (python 3.x supported as well)
 - pip >= 0.8
 - config >= 0.3 (optional)
 
@@ -34,6 +34,5 @@ More detailed information will be posted later
 License
 -------
 
-Copyright (C) 2011 Ilya Polosukhin
+Copyright (C) 2012 Illia Polosukhin
 This program is licensed under the MIT License (see LICENSE)
- 
