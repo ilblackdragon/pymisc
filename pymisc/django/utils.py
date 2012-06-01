@@ -8,6 +8,9 @@ from django.conf import settings
 from django.http import HttpResponse
 from django.utils.encoding import force_unicode, iri_to_uri
 
+first_cyrillic_letter = unicode('а')
+last_cyrillic_letter = unicode('я')
+
 class HttpResponseReload(HttpResponse):
     """
     Reload page and stay on the same page from where request was made.
@@ -64,11 +67,10 @@ def get_config(key, default):
 def get_alphabets():
     alphabet_en = unicode(string.ascii_uppercase)
     alphabet_ru = []
-    first = ord(u'а')
-    last = ord(u'я')+1
+    first = ord(first_cyrillic_letter)
+    last = ord(last_cyrillic_letter)+1
     for ch in range(first, last):
         alphabet_ru.append(unichr(ch).upper()) 
     return (alphabet_en, alphabet_ru)
     
 alphabet_en, alphabet_ru = get_alphabets()
-

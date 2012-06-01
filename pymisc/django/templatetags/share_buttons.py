@@ -24,7 +24,7 @@ def tweet_it(url, title):
         <div class="twitter">
             <a href="http://twitter.com/home/?%s" title="%s" target="_blank"></a>
         </div>    
-    """ % (urllib.urlencode({'status': title + (u" " + url + u" #escalibro").encode('utf-8')}), ugettext("Tweet it"))    
+    """ % (urllib.urlencode({'status': title + (unicode(" ") + url + unicode(" #escalibro")).encode('utf-8')}), ugettext("Tweet it"))    
     
 @register.simple_tag
 def buzz_it(url, title):

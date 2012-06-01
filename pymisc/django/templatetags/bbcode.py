@@ -17,7 +17,7 @@ def bbcode(value):
         from postmarkup import render_bbcode
     except ImportError:
         if settings.DEBUG:
-            raise template.TemplateSyntaxError, "Error in {% bbcode %} filter: The Python postmarkup library isn't installed."
+            raise template.TemplateSyntaxError("Error in {% bbcode %} filter: The Python postmarkup library isn't installed.")
         return force_unicode(value)
     else:
         return mark_safe(render_bbcode(value))
@@ -35,7 +35,7 @@ def strip_bbcode(value):
         from postmarkup import strip_bbcode
     except ImportError:
         if settings.DEBUG:
-            raise template.TemplateSyntaxError, "Error in {% bbcode %} filter: The Python postmarkup library isn't installed."
+            raise template.TemplateSyntaxError("Error in {% bbcode %} filter: The Python postmarkup library isn't installed.")
         return force_unicode(value)
     else:
         return mark_safe(strip_bbcode(value))
