@@ -234,4 +234,4 @@ Text1 <div style="text-align: center">Some text</div> Text2
 <a style="text-align:center;">Link</a>
     """
     #clear.clear_html_code('<a style="text-align: center">Link</a>')
-    print clear.clear_html_code(text)
+    print(clear.clear_html_code(text))

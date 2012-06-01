@@ -102,13 +102,13 @@ def turn_right(orientation):
 def turn_left(orientation):
     return orientations[(orientations.index(orientation)+1) % len(orientations)]
 
-def distance((ax, ay), (bx, by)):
+def distance(p1, p2):
     "The distance between two (x, y) points."
-    return math.hypot((ax - bx), (ay - by))
+    return math.hypot((p1[0] - p2[0]), (p1[1] - p2[1]))
 
-def distance2((ax, ay), (bx, by)):
+def distance2(p1, p2):
     "The square of the distance between two (x, y) points."
-    return (ax - bx)**2 + (ay - by)**2
+    return (p1[0] - p2[0]) ** 2 + (p1[1] - p2[1]) ** 2
 
 def clip(vector, lowest, highest):
     """Return vector, except if any element is less than the corresponding
@@ -208,8 +208,8 @@ def print_table(table, header=None, sep=' ', numfmt='%g'):
     sizes = map(maxlen, zip(*[map(str, row) for row in table]))
     for row in table:
         for (j, size, x) in zip(justs, sizes, row):
-            print getattr(str(x), j)(size), sep,
-        print
+            print(getattr(str(x), j)(size), sep)
+        print()
 
 def AIMAFile(components, mode='r'):
     "Open a file based at the AIMA root directory."

@@ -1,5 +1,11 @@
 import math
 import itertools
+try:
+    from itertools import izip
+except ImportError:
+    # Python 3.x - zip is iterable
+    izip = zip
+    xrange = range
 
 def euclidian_distance(l1, l2):
     """
@@ -8,7 +14,7 @@ def euclidian_distance(l1, l2):
     1.4142135623730951
     """
     dist = 0
-    for x1, x2 in itertools.izip(l1, l2):
+    for x1, x2 in izip(l1, l2):
         dist += (x1 - x2) ** 2
     return math.sqrt(dist)
 
@@ -19,7 +25,7 @@ def hamming_distance(s1, s2):
     3
     """
     count = 0
-    for c1, c2 in itertools.izip(s1, s2):
+    for c1, c2 in izip(s1, s2):
          if c1 != c2:
              count += 1
     return count
@@ -35,14 +41,14 @@ def levenshtein_distance(seq1, seq2):
     3
     """
     len_seq1 = len(seq1) + 1
-    prev_row = range(len_seq1)
+    prev_row = list(range(len_seq1))
     j = 1
     for c1 in seq2:
         this_row = [j] * len_seq1
         i = 1
         for c2 in seq1:
             if c1 == c2:
-                this_row[i] = prev_row[i]
+                this_row[i] = prev_row[i-1]
             else:
                 this_row[i] = min(this_row[i-1], prev_row[i], prev_row[i-1]) + 1
             i += 1
@@ -57,7 +63,7 @@ def damerau_levenshtein_distance(seq1, seq2):
     6
     """
     oneago = None
-    thisrow = range(1, len(seq2) + 1) + [0]
+    thisrow = list(range(1, len(seq2) + 1)) + [0]
     for x in xrange(len(seq1)):
         twoago, oneago, thisrow = oneago, thisrow, [0] * len(seq2) + [x + 1]
         for y in xrange(len(seq2)):
@@ -69,3 +75,10 @@ def damerau_levenshtein_distance(seq1, seq2):
                 and seq1[x-1] == seq2[y] and seq1[x] != seq2[y]):
                 thisrow[y] = min(thisrow[y], twoago[y - 2] + 1)
     return thisrow[len(seq2) - 1]
+
+def _test():
+    import doctest
+    doctest.testmod()
+
+if __name__ == "__main__":
+    _test()

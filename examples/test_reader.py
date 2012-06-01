@@ -1,4 +1,4 @@
-from pyutils.reader import IReader, CSVReader, DataManager, NewFieldFilter
+from pymisc.reader import IReader, CSVReader, DataManager, NewFieldFilter
 
 def test_csv():
     test = CSVReader.create({'path': 'data/iris.csv'})

@@ -28,26 +28,25 @@ class LogPrinter(object):
 class logprint(object):
     """Wraps a method so that any calls made to print get logger instead"""
     
-    def __init__(self, logger=None):
+    def __init__(self, func, logger=None):
+        self.func = func
         self.logger = logger
         
-    def __call__(self, func):
-        def pwrapper(*arg):
-            stdobak = sys.stdout
-            lpinstance = LogPrinter(self.logger)
-            sys.stdout = lpinstance
-            lpinstance.write('Call `%s.%s` with args: `%s`' % (func.__module__, func.__name__, str(arg)))
-            try:
-                res = func(*arg)
-            except Exception as e:
-                lpinstance.write('Function `%s.%s` finished with exception `%s`.\n%s' % (func.__module__, func.__name__, str(type(e)), e.message))
-                raise e, None, sys.exc_info()
-            else:
-                lpinstance.write('Function `%s.%s` finished with result `%s`.' % (func.__module__, func.__name__, str(res)))
-            finally:
-                sys.stdout = stdobak
-            return res
-        return pwrapper
+    def __call__(self, *arg):
+        stdobak = sys.stdout
+        lpinstance = LogPrinter(self.logger)
+        sys.stdout = lpinstance
+        lpinstance.write('Call `%s.%s` with args: `%s`' % (self.func.__module__, self.func.__name__, str(arg)))
+        try:
+            res = self.func(*arg)
+        except Exception as e:
+            lpinstance.write('Function `%s.%s` finished with exception `%s`.\n%s' % (self.func.__module__, self.func.__name__, str(type(e)), str(e)))
+            raise e
+        else:
+            lpinstance.write('Function `%s.%s` finished with result `%s`.' % (self.func.__module__, self.func.__name__, str(res)))
+        finally:
+            sys.stdout = stdobak
+        return res
     
 class memoized(object):
    """Decorator that caches a function's return value each time it is called.
