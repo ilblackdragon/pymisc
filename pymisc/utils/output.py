@@ -1,4 +1,19 @@
 
+class ReprToStr(object):
+    """
+    >>> class Example(ReprToStr):
+            def __str__(self):
+                return "example"
+    >>> e = Example()
+    >>> e
+    "example"
+    >>> print(e)
+    "example"
+    """
+    
+    def __repr__(self):
+        return str(self)
+
 def print_func(message):
     """
     >>> print_func("test message")
