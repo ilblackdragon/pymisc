@@ -3,6 +3,7 @@ Module contains different decorator for different purpose
 """
 import sys
 import logging
+import functools
 
 class LogPrinter(object):
     """
@@ -25,29 +26,29 @@ class LogPrinter(object):
         if text.strip() != '':
             self.ilogger.info(text)
 
-class logprint(object):
+def logprint(logger=None):
     """Wraps a method so that any calls made to print get logger instead"""
-    
-    def __init__(self, func, logger=None):
-        self.func = func
-        self.logger = logger
-        
-    def __call__(self, *arg):
-        stdobak = sys.stdout
-        lpinstance = LogPrinter(self.logger)
-        sys.stdout = lpinstance
-        lpinstance.write('Call `%s.%s` with args: `%s`' % (self.func.__module__, self.func.__name__, str(arg)))
-        try:
-            res = self.func(*arg)
-        except Exception as e:
-            lpinstance.write('Function `%s.%s` finished with exception `%s`.\n%s' % (self.func.__module__, self.func.__name__, str(type(e)), str(e)))
-            raise e
-        else:
-            lpinstance.write('Function `%s.%s` finished with result `%s`.' % (self.func.__module__, self.func.__name__, str(res)))
-        finally:
-            sys.stdout = stdobak
-        return res
-    
+
+    def wrapped_func(func):
+        @functools.wraps(func)
+        def wrapped_f(*args, **kwargs):
+            stdobak = sys.stdout
+            lpinstance = LogPrinter(logger)
+            sys.stdout = lpinstance
+            lpinstance.write('Call `%s.%s` with args: `%s` and kwargs: `%s`' % (func.__module__, func.__name__, str(args), str(kwargs)))
+            try:
+                res = func(*args, **kwargs)
+            except Exception as e:
+                lpinstance.write('Function `%s.%s` finished with exception `%s`.\n%s' % (func.__module__, func.__name__, str(type(e)), str(e)))
+                raise e
+            else:
+                lpinstance.write('Function `%s.%s` finished with result `%s`.' % (func.__module__, func.__name__, str(res)))
+            finally:
+                sys.stdout = stdobak
+            return res
+        return wrapped_f
+    return wrapped_func
+   
 class memoized(object):
    """Decorator that caches a function's return value each time it is called.
    If called later with the same arguments, the cached value is returned, and
