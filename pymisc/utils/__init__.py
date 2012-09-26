@@ -8,7 +8,7 @@ import time
 # Structures
 from pymisc.utils.structs import *
 # Math functions and constants
-from pymisc.utils.math import *
+from pymisc.utils.stat_utils import *
 # Functional style functions
 from pymisc.utils.func import *
 
