@@ -1,10 +1,17 @@
 """
 Simple Data Structures: 
-Dict, DefaultDict, RecursiveDict, Struct
+Dict, DefaultDict, RecursiveDict, Struct, isiterable, make_iterable
 """
 
 import copy
 
+def isiterable(obj):
+    return isinstance(obj, collections.Iterable)
+
+def make_iterable(l1, l2):
+    return l1 if isiterable(l1) else [l1], \
+        l2 if isiterable(l2) else [l2]
+    
 def Dict(**entries):  
     """Create a dict out of the argument=value arguments. 
     >>> Dict(a=1, b=2, c=3)

@@ -1,5 +1,11 @@
+"""
+Distance functions:
+Euclidian distance, Hamming distance, Levenshtein distance, Damerau-Levenshtein distance
+"""
+
 import math
 import itertools
+import collections
 try:
     from itertools import izip
 except ImportError:
@@ -7,25 +13,31 @@ except ImportError:
     izip = zip
     xrange = range
 
+from pymisc.utils.structs import make_iterable
+    
+   
 def euclidian_distance(l1, l2):
     """
     Euclidian distance
+    >>> euclidian_distance(1, 4)
+    3.0
     >>> euclidian_distance([1, 2], [2, 1])
     1.4142135623730951
     """
+    l1, l2 = make_iterable(l1, l2)
     dist = 0
     for x1, x2 in izip(l1, l2):
         dist += (x1 - x2) ** 2
     return math.sqrt(dist)
 
-def hamming_distance(s1, s2):
+def hamming_distance(l1, l2):
     """
     http://en.wikipedia.org/wiki/Hamming_distance
     >>> hamming_distance("toned", "roses")
     3
     """
     count = 0
-    for c1, c2 in izip(s1, s2):
+    for c1, c2 in izip(l1, l2):
          if c1 != c2:
              count += 1
     return count
