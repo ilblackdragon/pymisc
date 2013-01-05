@@ -231,7 +231,9 @@ if __name__ == "__main__":
 <object width="480" height="385"><param name="movie" value="http://wwwpyoutube.com/e/vvmqCXR-tiA"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><embed src="http://www.youtube.com/e/vvmqCXR-tiA" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="480" height="385"></embed></object>
 <iframe src="http://vkontakte.ru/video_ext.php?oid=14071319&id=156556674&hash=2a4233a33890ef11&hd=1" width="607" height="360" frameborder="0"></iframe>
 Text1 <div style="text-align: center">Some text</div> Text2
-<a style="text-align:center;">Link</a>
+<a href="https://escalibro.com/" style="text-align:center;">Link</a>
+<a href="http://escalibro.com/" style="text-align:center;color: rgb(10,10,10)">Link2</a>
+<a target="_blank" href="javascript:stuff">test1</a>
+<a target="_blank" href="data:text/html, <script>alert(window.opener.document.cookie)</script>">test2</a>
     """
-    #clear.clear_html_code('<a style="text-align: center">Link</a>')
     print(clear.clear_html_code(text))
