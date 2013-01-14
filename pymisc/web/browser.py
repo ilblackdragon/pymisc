@@ -21,12 +21,12 @@ class Browser(object):
                 )
             ]
 
-    def _get(self, url):
+    def get(self, url):
         response = self.opener.open(url)
         content = response.read()
         return content
 
-    def _post(self, url, post_data):
+    def post(self, url, post_data):
         form_data = urllib.urlencode(post_data)
         response = self.opener.open(url, form_data)
         content = response.read()
@@ -35,7 +35,7 @@ class Browser(object):
 
     def get_json(self, url):
         try:
-            response = self._get(url)
+            response = self.get(url)
             return json.loads(response)
         except urllib2.URLError as e:
             return {
@@ -45,7 +45,7 @@ class Browser(object):
 
     def post_json(self, url, post_data):
         try:
-            response = self._post(url, post_data)
+            response = self.post(url, post_data)
             return json.loads(response)
         except urllib2.URLError as e:
             return {
@@ -59,3 +59,4 @@ class Browser(object):
         f = file_opener(join(dir, filename), 'wb')
         f.write(response)
         f.close()
+
