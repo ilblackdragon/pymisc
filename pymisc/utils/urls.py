@@ -1,3 +1,5 @@
+import re
+
 try:
     from urlparse import urljoin
 except ImportError:
