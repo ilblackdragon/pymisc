@@ -29,10 +29,11 @@ Use pymisc
 1) Import pymisc in your module
 2) Profit =)
 
-More detailed information will be posted later
+Additional information can be found in the post http://ilblackdragon.blogspot.com/2012/12/pymisc-module.html
 
 License
 -------
 
-Copyright (C) 2012 Illia Polosukhin
+Copyright (C) 2012-2013 Illia Polosukhin
 This program is licensed under the MIT License (see LICENSE)
+
