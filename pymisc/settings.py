@@ -14,7 +14,11 @@ Your code file:
 
 import os.path
 import atexit
-from config import Config
+
+try:
+    from config import Config
+except ImportError:
+    raise ImportError("`config` module required. Please install it first before using this module.")
 
 class Settings(Config):
     

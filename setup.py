@@ -35,7 +35,7 @@ META_DATA = dict(
     packages = find_packages(),
     package_data = { '': PACKAGE_DATA, },
 
-    install_requires = [ 'config', ],
+    install_requires = [ ],
 )
 
 if __name__ == "__main__":

@@ -12,7 +12,7 @@ Requirements
 
 - python >= 2.5 (python 3.x supported as well)
 - pip >= 0.8
-- config >= 0.3 (optional)
+- config >= 0.3 (optional, to use settings)
 
 
 Installation
