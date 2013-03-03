@@ -3,7 +3,8 @@
 pymisc
 ##############
 
-**Python misc** is module with set of python modules, where you'll find anything from decorators to data readers. One thing in common - all this helps to write code faster.
+**Python misc** is a package with set of useful python modules, where you'll find anything from decorators to data readers.
+One thing this modules have in common is that all of them helps you to write code faster.
 
 .. contents::
 
@@ -27,7 +28,8 @@ Use pymisc
 ------------
 
 1) Import pymisc in your module
-2) Profit =)
+2) ...
+3) Profit =)
 
 Additional information can be found in the post http://ilblackdragon.blogspot.com/2012/12/pymisc-module.html
 
