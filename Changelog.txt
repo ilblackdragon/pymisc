@@ -1,8 +1,15 @@
-## 2011-03-16 0.0.1
+## 2013-07-23 0.0.6
 
-* Set public repository
+Removed django subpackage (please use ilblackdragon/django-misc instead as up to date one)
 
 ## 2012-05-31 0.0.2
 
 * Many new utility modules added
 * Python 3.x support added
+
+## 2011-03-16 0.0.1
+
+* Set public repository
+
+
+
